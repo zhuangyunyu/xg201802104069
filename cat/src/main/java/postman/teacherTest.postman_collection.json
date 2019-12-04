@@ -1,0 +1,215 @@
+{
+	"info": {
+		"_postman_id": "6006ec89-dac6-43bf-ae22-a9bc1d44c8af",
+		"name": "teacherTest",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "GET http://localhost:8080/teacher.ctl",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "d40b39e5-3694-48b4-be84-a67c67838dd0",
+						"exec": [
+							"tests[\"Body matches string 王霞\"] = responseBody.has(\"王霞\");",
+							"tests[\"Body matches string 张三\"] = responseBody.has(\"张三\");",
+							"tests[\"Body matches string 李四\"] = responseBody.has(\"李四\");"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080//teacher.ctl",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"",
+						"teacher.ctl"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET http://localhost:8080/teacher.ctl?id=2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "f81d97a5-bfb5-458e-be4a-1bebdf8f564c",
+						"exec": [
+							"tests[\"Body matches string 王霞\"] = responseBody.has(\"王霞\");",
+							"tests[\"Body matches string 张三\"] = responseBody.has(\"张三\");",
+							"tests[\"Body matches string 李四\"] = responseBody.has(\"李四\");"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/teacher.ctl?id=2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"",
+						"teacher.ctl"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "2"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PUT http://localhost:8080/teacher.ctl",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "09e33902-0a02-40ce-ac0b-a496cb91dde6",
+						"exec": [
+							"var jsonData = JSON.parse(responseBody);",
+							"tests[\"王霞\"] = jsonData.message === \"修改成功\";",
+							"tests[\"张三\"] = jsonData.message === \"修改成功\";",
+							"tests[\"李四\"] = jsonData.message === \"修改成功\";"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"degree\":{\"description\":\"博士后\",\"id\":7,\"no\":\"06\",\"remarks\":\"the\r\nbest\"},\"department\":{\"description\":\"工业工程\",\"id\":5,\"no\":\"0204\",\"remarks\":\"\",\"school\":{\"description\":\"土木工程\",\"id\":1,\"no\":\"01\",\"remarks\":\"\"}},\"id\":6,\"name\":\"李四\",\"title\":{\"description\":\"教授\",\"id\":3,\"no\":\"03\",\"remarks\":\"0.0\"}}"
+				},
+				"url": {
+					"raw": "http://localhost:8080//teacher.ctl",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"",
+						"teacher.ctl"
+					]
+				},
+				"description": " 修改老师\n"
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE http://localhost:8080/teacher.ctl?id=1",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "88015f8c-464e-4a19-bac2-8f1d4681c38c",
+						"exec": [
+							"var jsonData = JSON.parse(responseBody);",
+							"tests[\"删除成功？\"] = jsonData.message === \"删除成功\""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": []
+				},
+				"url": {
+					"raw": "http://localhost:8080/teacher.ctl?id=7",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"",
+						"teacher.ctl"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "7"
+						}
+					]
+				},
+				"description": "delete teacher"
+			},
+			"response": []
+		},
+		{
+			"name": "POST http://localhost:8080/teacher.ctl",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "cf331d0f-19e4-4cf2-9f68-802bbe3d7887",
+						"exec": [
+							"var jsonData = JSON.parse(responseBody);",
+							"tests[\"增加成功？\"] = jsonData.message === \"增加成功\""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"degree\":{\"description\":\"硕士\",\"id\":7,\"no\":\"01\",\"remarks\":\"\"},\"department\":{\"description\":\"工业管理\",\"id\":2,\"no\":\"0202\",\"remarks\":\"\",\"school\":{\"description\":\"管理工程\",\"id\":3,\"no\":\"02\",\"remarks\":\"最好的学院\"}},\"id\":8,\"name\":\"王五\",\"title\":{\"description\":\"教授\",\"id\":3,\"no\":\"02\",\"remarks\":\"\"}}"
+				},
+				"url": {
+					"raw": "http://localhost:8080//teacher.ctl",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"",
+						"teacher.ctl"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
