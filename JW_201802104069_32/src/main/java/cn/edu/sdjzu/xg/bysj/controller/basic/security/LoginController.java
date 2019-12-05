@@ -17,8 +17,6 @@ import java.sql.SQLException;
 @WebServlet("/login.ctl")
 public class LoginController extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        request.setCharacterEncoding("UTF-8");
         String username = request.getParameter("username");
         String password = request.getParameter("password");
         JSONObject message = new JSONObject();
