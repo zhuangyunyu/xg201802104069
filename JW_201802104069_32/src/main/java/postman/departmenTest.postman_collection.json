@@ -1,0 +1,210 @@
+{
+	"info": {
+		"_postman_id": "1b749710-9efc-4ca8-8a9c-7b4e353b9ee7",
+		"name": "departmenTest",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "GET http://localhost:8080/teacher.ctl",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "d40b39e5-3694-48b4-be84-a67c67838dd0",
+						"exec": [
+							"tests[\"Body matches string 工业工程\"] = responseBody.has(\"工业工程\");",
+							"tests[\"Body matches string 信息管理\"] = responseBody.has(\"信息管理\");",
+							"tests[\"Body matches string 工程管理\"] = responseBody.has(\"工程管理\");"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/department.ctl",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"department.ctl"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET http://localhost:8080/teacher.ctl?id=2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "f81d97a5-bfb5-458e-be4a-1bebdf8f564c",
+						"exec": [
+							"tests[\"Body matches string 工业工程\"] = responseBody.has(\"工业工程\");",
+							"tests[\"Body matches string 信息管理\"] = responseBody.has(\"信息管理\");",
+							"tests[\"Body matches string 工程管理\"] = responseBody.has(\"工程管理\");"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/department.ctl?id=6",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"",
+						"department.ctl"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "6"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PUT http://localhost:8080/teacher.ctl",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "09e33902-0a02-40ce-ac0b-a496cb91dde6",
+						"exec": [
+							"var jsonData = JSON.parse(responseBody);",
+							"tests[\"信息管理\"] = jsonData.message === \"修改成功\";",
+							"tests[\"工业工程\"] = jsonData.message === \"修改成功\";",
+							"tests[\"工程管理\"] = jsonData.message === \"修改成功\";"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"description\": \"工程管理\",\r\n    \"id\": 2,\r\n    \"no\": \"3\",\r\n    \"remarks\": \"第一\",\r\n    \"school\": {\r\n        \"description\": \"管理工程\",\r\n        \"id\": 1,\r\n        \"no\": \"02\",\r\n        \"remarks\": \"最好的学院\"\r\n    }\r\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/department.ctl",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"department.ctl"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE http://localhost:8080/teacher.ctl?id=1",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "88015f8c-464e-4a19-bac2-8f1d4681c38c",
+						"exec": [
+							"var jsonData = JSON.parse(responseBody);",
+							"tests[\"删除成功？\"] = jsonData.message === \"删除成功\""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": []
+				},
+				"url": {
+					"raw": "http://localhost:8080/tdepartment.ctl?id=4",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"",
+						"tdepartment.ctl"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "4"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST http://localhost:8080/teacher.ctl",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "cf331d0f-19e4-4cf2-9f68-802bbe3d7887",
+						"exec": [
+							"var jsonData = JSON.parse(responseBody);",
+							"tests[\"增加成功？\"] = jsonData.message === \"增加成功\""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"description\": \"工业工程\",\r\n    \"no\": \"3\",\r\n    \"remarks\": \"无\",\r\n    \"school\": {\r\n        \"description\": \"管理工程\",\r\n        \"id\": 1,\r\n        \"no\": \"02\",\r\n        \"remarks\": \"最好的学院\"\r\n    }\r\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/department.ctl",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"department.ctl"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}

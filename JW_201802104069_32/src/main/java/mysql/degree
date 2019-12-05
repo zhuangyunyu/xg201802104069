@@ -1,0 +1,78 @@
+create table degree
+(
+    id          bigint auto_increment
+        primary key,
+    description varchar(255) not null,
+    no          varchar(255) not null,
+    remarks     varchar(255) null
+);
+
+create table department
+(
+    id          bigint auto_increment,
+    description varchar(255)     not null,
+    no          varchar(255)     not null,
+    remarks     varchar(255)     null,
+    school_id   bigint default 0 not null,
+    primary key (id, school_id),
+        foreign key (school_id) references school (id)
+);
+
+create table proftitle
+(
+    id          bigint auto_increment
+        primary key,
+    description varchar(255) not null,
+    no          varchar(255) not null,
+    remarks     varchar(255) null
+);
+
+
+create table school
+(
+    id          bigint auto_increment
+        primary key,
+    description varchar(225) not null,
+    no          varchar(255) not null,
+    remarks     varchar(225) null,
+    constraint no
+        unique (no)
+);
+
+
+create table teacher
+(
+    id            bigint auto_increment,
+    name          varchar(255)     not null,
+    proftitle_id  bigint default 0 not null,
+    degree_id     bigint default 0 not null,
+    department_id bigint default 0 not null,
+    primary key (id, proftitle_id, degree_id, department_id),
+    constraint teacher_ibfk_1
+        foreign key (proftitle_id) references proftitle (id),
+    constraint teacher_ibfk_2
+        foreign key (degree_id) references degree (id),
+    constraint teacher_ibfk_3
+        foreign key (department_id) references department (id)
+);
+
+create index degree_id
+    on teacher (degree_id);
+
+create index department_id
+    on teacher (department_id);
+
+create index proftitle_id
+    on teacher (proftitle_id);
+
+
+
+    create table user(
+         id bigint not null auto_increment,
+         username varchar(255) not null,
+         password varchar(255) not null,
+         teacher_id bigint not null,
+         loginTime varchar(255) not null,
+         primary key(id,teacher_id),
+         foreign key (teacher_id) references teacher(id)
+         );
