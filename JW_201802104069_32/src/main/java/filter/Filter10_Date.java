@@ -6,7 +6,7 @@ import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 import java.util.Calendar;
 
-@WebFilter(filterName = "Filter 1", urlPatterns = {"/*"})
+//@WebFilter(filterName = "Filter 1", urlPatterns = {"/*"})
 public class Filter10_Date implements Filter {
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {}
